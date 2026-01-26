@@ -60,7 +60,7 @@ if page == "Heart Attack Risk Prediction":
         restecg = st.selectbox("Resting ECG Results", 
                                options=[(0, "Normal"), (1, "ST-T Abnormality"), (2, "LV Hypertrophy")],
                                format_func=lambda x: x[1])
-        thalach = st.number_input("Maximum Heart Rate Achieved", min_value=60, max_value=220, value=150)
+        thalch = st.number_input("Maximum Heart Rate Achieved", min_value=60, max_value=220, value=150)
         exang = st.selectbox("Exercise Induced Angina", options=[("No", 0), ("Yes", 1)], format_func=lambda x: x[0])
         oldpeak = st.number_input("ST Depression", min_value=0.0, max_value=10.0, value=1.0, step=0.1)
 
@@ -84,7 +84,7 @@ if page == "Heart Attack Risk Prediction":
             'age': age,
             'trestbps': trestbps,
             'chol': chol,
-            'thalach': thalach,
+            'thalch': thalch,
             'oldpeak': oldpeak,
             'ca': ca,
             'sex_Male': 1 if sex[1] == 1 else 0,
@@ -102,7 +102,7 @@ if page == "Heart Attack Risk Prediction":
         }])
 
         TRAINING_COLUMNS = [
-            'age','trestbps','chol','thalach','oldpeak','ca',
+            'age','trestbps','chol','thalch','oldpeak','ca',
             'sex_Male','cp_atypical angina','cp_non-anginal','cp_typical angina',
             'fbs_True','restecg_normal','restecg_st-t abnormality','exang_True',
             'slope_flat','slope_upsloping','thal_normal','thal_reversable defect'
@@ -111,7 +111,7 @@ if page == "Heart Attack Risk Prediction":
         input_df = input_df[TRAINING_COLUMNS]
 
         # Scale only numerical columns (same as training)
-        num_cols = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak', 'ca']
+        num_cols = ['age', 'trestbps', 'chol', 'thalch', 'oldpeak', 'ca']
         input_df[num_cols] = scaler.transform(input_df[num_cols])
 
         # Make prediction
